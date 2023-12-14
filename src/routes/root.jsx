@@ -53,7 +53,8 @@ function App() {
           });
           */
          updateCounter();
-        }}>Clieck Me!</button>
+        }}
+        style={{cursor: "pointer"}}>Clieck Me!</button>
       </div>
     </div>
   )
