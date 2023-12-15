@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  server:
+#    image: react-route-nginx
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: react-route-nginx-server
+    restart: unless-stopped
+    ports:
+      - 80:80  # Http port (external:local), for example for use port [8080] use: [8080:80]
+    volumes:
+      - ./dist:/usr/share/nginx/html
+# Un comment if you want to change this
+#    entrypoint: ["nginx", "-g", "daemon off;"]
+# Not need
+#    working_dir: /
