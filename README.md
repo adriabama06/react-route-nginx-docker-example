@@ -1,46 +1,46 @@
 # How works?
-First build the code, it generates static files and one index.html  
-Nginx has the work of give the static files and if the route not exist return index.html to make React Router do the rest of the work.
+To understand the workflow, start by building the code. This process generates static files and an index.html file. Nginx is then responsible for serving the static files. If the requested route does not exist, Nginx returns the index.html file, allowing React Router to handle the rest of the application.
 
 > [!TIP]
-> For learn how I did this I recommend see the next files:
+> To delve into the implementation details, I recommend examining the following files:
 - [nginx.conf](./nginx.conf)
 - [Dockerfile](./Dockerfile)
 - [docker-compose.yml](./docker-compose.yml)
 
-The rest of the code is like other React + Vite code
+The remaining code follows the standard structure of a React + Vite application.
 
 # Deploy with Docker
-Befor any thing run the command below to build the code.
+Before proceeding, execute the following command to build the code.
 ```bash
 npm run build
 ```
 ## *Without* Docker compose
-Now you can build the Docker
+You can now build the Docker image using the following command
 ```bash
 docker build --tag react-route-nginx .
 ```
 
-And now you can run it
+And then run the Docker container
 ```bash
 docker run -p 80:80 -v ./dist:/usr/share/nginx/html -dt --rm --name react-route-nginx-server react-route-nginx
 ```
 
-For stop... First stop the container
+To stop the container, use
 ```bash
 docker stop react-route-nginx-server
 ```
-And remove the image, if you want :D?
+If you wish to remove the image, use
 ```bash
 docker rmi react-route-nginx
 ```
 
 ## *With* Docker compose *(better for me)*
-Thanks to Docker compose you can directly run the command below to start
+Thanks to Docker Compose, you can start the application with a single command
 ```bash
 docker compose up -d
 ```
-And the command blow to stop and clean up
+To stop and clean up, use the following command
 ```bash
 docker compose down --rmi all
 ```
+This approach simplifies the deployment process and enhances manageability.
